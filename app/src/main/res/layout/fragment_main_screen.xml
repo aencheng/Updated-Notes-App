@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainScreenFragment">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.project7.NotesViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notes"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="start"/>
+
+            <ImageView
+                android:id="@+id/signout_button"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:layout_gravity="end"
+                android:clickable="true"
+                android:onClick="@{() -> viewModel.signOut()}"
+                app:srcCompat="@drawable/logout"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/save_button"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:layout_gravity="end"
+                android:clickable="true"
+                android:onClick="@{() -> viewModel.onNewTaskClicked()}"
+                app:srcCompat="@drawable/add_note"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notes_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            />
+
+    </LinearLayout>
+</layout>
